@@ -46,6 +46,7 @@ public class TCPServer  implements Runnable {
 
     private  void addClient(Socket client)
     {
+
         Listener tempListener = new Listener(client,reqManager);
         Thread tempThread = new Thread(tempListener);
         tempThread.start();

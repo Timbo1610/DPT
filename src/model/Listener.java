@@ -36,6 +36,8 @@ public class Listener implements Runnable {
             inputScanner = new Scanner(input);
             output = clientSocket.getOutputStream();
 
+
+
         } catch (IOException ex) {
 
             Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,6 +54,7 @@ public class Listener implements Runnable {
 
     @Override
     public void run() {
+        println("Welcome");
         listen();
     }
 
@@ -67,33 +70,37 @@ public class Listener implements Runnable {
             readinput = inputScanner.nextLine();
             System.out.println(readinput);
 
-            String jsonString = readinput.split( "@")[1];
+
             switch((readinput.split("@"))[0])
             {
                 case "req":
-                    req = gson.fromJson(jsonString,Request.class);
+                    req = gson.fromJson(readinput.split( "@")[1],Request.class);
                     reqManager.addRequest(req);
                     break;
 
                 case "veh":
-                    veh = gson.fromJson(jsonString,Vehicle.class);
+                    veh = gson.fromJson(readinput.split( "@")[1],Vehicle.class);
                     reqManager.addVehicle(veh);
                     break;
             }
 
-
-
-
-
-
-
-
-            output.write("test".getBytes());
+            println("received!");
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
 
         }
+    }
+
+    public void println(String message)
+    {
+        try {
+
+            output.write((message + "\r\n").getBytes() );
+        } catch (IOException ex) {
+            Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 
