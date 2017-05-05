@@ -4,7 +4,7 @@ import model.Request;
 
 import java.util.ArrayList;
 
-public class main
+public class Main
 {
 
     private static ArrayList <Request> requestList;
