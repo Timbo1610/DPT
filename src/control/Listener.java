@@ -1,7 +1,8 @@
-package model;
+package control;
 
 import com.google.gson.Gson;
-import control.RequestManager;
+import model.Request;
+import model.Vehicle;
 
 import java.io.IOException;
 import java.io.InputStream;

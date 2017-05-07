@@ -1,7 +1,5 @@
 package control;
 
-import model.Listener;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,6 +18,7 @@ public class TCPServer  implements Runnable {
     private  Listener clientListener;
     private  ArrayList <Listener> clientList = new ArrayList();
     private RequestManager reqManager;
+    private Boolean running = true;
 
     protected TCPServer(RequestManager reqManager)
     {
@@ -31,16 +30,17 @@ public class TCPServer  implements Runnable {
         Socket client = null;
         Listener clientListener;
 
+
         try {
             serverSocket = new ServerSocket(SERVERPORT);
             System.out.println("Socket opened on port " + SERVERPORT);
 
 
-            while(true) {
+            while(running) {
                 addClient(serverSocket.accept());
             }
         } catch (IOException e) {
-            throw new RuntimeException("Cannot open port " + SERVERPORT, e);
+
         }
     }
 
@@ -55,6 +55,7 @@ public class TCPServer  implements Runnable {
     }
 
     public  void closeServerSocket() {
+        running = false;
         try {
             serverSocket.close();
             System.out.println("Socket closed");
