@@ -1,16 +1,13 @@
 package control;
 
-import model.Request;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class Main
 {
 
-    private static ArrayList <Request> requestList;
+
     private static TCPServer tcpServer;
     private static RequestManager reqManger;
     private static Thread serverThread;
@@ -35,7 +32,7 @@ public class Main
         routeManager = new RouteManager();
 
 
-        routeManager.setReqList(requestList);
+        routeManager.setReqList(reqManger.getRequests());
         routeManager.calc();
 
         menuLoop();

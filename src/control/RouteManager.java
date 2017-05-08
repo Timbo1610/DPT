@@ -33,7 +33,7 @@ public class RouteManager {
             for (Request coReq: reqList)
             {
                 dist = calcOrigindist(req,coReq);
-                if(dist <= 100)
+                if(dist <= 1000)
                 {
                     System.out.print(coReq.getPassenger() + " " + dist + " | ");
                 }

@@ -98,4 +98,12 @@ public class RequestManager {
             );
         }
     }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    public ArrayList<Vehicle> getVehicles() {
+        return vehicles;
+    }
 }
