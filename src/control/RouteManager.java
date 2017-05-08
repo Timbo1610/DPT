@@ -26,9 +26,14 @@ public class RouteManager {
 
     public void calc()
     {
+        routeList.clear();
+
         int originDist, destinationDist;
         for (Request req: reqList)
         {
+            req.getRequests().clear();
+            req.setRoute(null);
+
             System.out.println();
             System.out.print(req.getPassenger() + " : ");
             for (Request coReq: reqList)
@@ -77,6 +82,12 @@ public class RouteManager {
                 req.setRoute(tempRoute);
             }
         }
+
+        for(Route route:routeList)
+        {
+            route.setPickupLocationX(calcMeetingPoint(route.getRequests())[0]);
+            route.setPickupLocationY(calcMeetingPoint(route.getRequests())[1]);
+        }
     }
 
 
@@ -87,13 +98,64 @@ public class RouteManager {
         return (int)Math.round(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)));
     }
 
+    //algorithm mid point of polygon
+    private int[] calcMeetingPoint(ArrayList<Request> requests)
+    {
+        //System.out.println("calc meeting point:");
+        double x = 0;
+        double y = 0;
+        double area = 0;
+        int n =  requests.size();
+
+        for(int j = 0 ; j < requests.size()-1;j++) {
+
+            double xi = requests.get(j).getOriginX();
+            double xi1 = requests.get((j+1)).getOriginX();
+            double yi = requests.get(j).getOriginY();
+            double yi1 = requests.get((j+1)).getOriginY();
+
+            x = x + (xi + xi1)   *(xi*yi1 - xi1*yi);
+            y = y + (yi + yi1)   *(xi*yi1 - xi1*yi);
+
+            //System.out.print(" x: " + xi + " y: " + yi + " " + " x1: " + xi1 + " y1: " + yi1 + " ");
+            //System.out.println(" x: " + x + " y: " + y);
+        }
+
+        for(int i = 0 ; i < requests.size()-1;i++)
+        {
+
+            double xi = requests.get(i).getOriginX();
+            double xi1 = requests.get((i+1)).getOriginX();
+            double yi = requests.get(i).getOriginY();
+            double yi1 = requests.get((i+1)).getOriginY();
+
+            area =+ (yi+yi1)*(xi-xi1);
+        }
+
+        area = Math.abs(area/2);
+
+        //System.out.print( " area: " + area + " " );
+
+
+        x/= (n*area);
+        y/= (n*area);
+
+
+        return new int[]{(int)x,(int)y};
+    }
+
+
+
+
+
 
     public void printRoutes()
     {
         System.out.println("\n\nRoutes");
         for(Route route: routeList)
         {
-            System.out.print("Route"+ routeList.indexOf(route) + " : " + route.getRequests().size() + " passengers... :" );
+            System.out.print("Route"+ routeList.indexOf(route) + " : " + route.getRequests().size() + " passengers.. " );
+            System.out.print("pick-up: " + route.getPickupLocationX() + ":" + route.getPickupLocationY() + " ");
             for(Request req:route.getRequests())
             {
                 System.out.print(req.getPassenger() + " " );

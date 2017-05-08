@@ -18,11 +18,14 @@ public class TCPServer  implements Runnable {
     private  Listener clientListener;
     private  ArrayList <Listener> clientList = new ArrayList();
     private RequestManager reqManager;
+    private RouteManager routeManager;
     private Boolean running = true;
 
-    protected TCPServer(RequestManager reqManager)
+    protected TCPServer(RequestManager reqManager, RouteManager routeManager )
+
     {
         this.reqManager = reqManager;
+        this.routeManager = routeManager;
     }
 
     private  void openServerSocket() {
@@ -47,7 +50,7 @@ public class TCPServer  implements Runnable {
     private  void addClient(Socket client)
     {
 
-        Listener tempListener = new Listener(client,reqManager);
+        Listener tempListener = new Listener(client,reqManager,routeManager);
         Thread tempThread = new Thread(tempListener);
         tempThread.start();
 

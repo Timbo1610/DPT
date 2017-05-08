@@ -24,11 +24,12 @@ public class Listener implements Runnable {
     private OutputStream output = null;
     private String readinput;
     private RequestManager reqManager;
+    private RouteManager routeManager;
     private Gson gson = new Gson();
 
-    public Listener(Socket clientSocket,RequestManager reqManager) {
+    public Listener(Socket clientSocket,RequestManager reqManager,RouteManager routeManager) {
 
-
+        this.routeManager = routeManager;
         this.reqManager = reqManager;
         this.clientSocket = clientSocket;
 
@@ -77,11 +78,14 @@ public class Listener implements Runnable {
                 case "req":
                     req = gson.fromJson(readinput.split( "@")[1],Request.class);
                     reqManager.addRequest(req);
+                    routeManager.calc();
+                    routeManager.printRoutes();
                     break;
 
                 case "veh":
                     veh = gson.fromJson(readinput.split( "@")[1],Vehicle.class);
                     reqManager.addVehicle(veh);
+
                     break;
             }
 

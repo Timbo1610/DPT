@@ -24,17 +24,20 @@ public class Main
         reqManger = new RequestManager();
         reqManger.initData();
 
-
-        tcpServer = new TCPServer(reqManger);
-        serverThread = new Thread(tcpServer);
-        serverThread.start();
-
         routeManager = new RouteManager();
-
-
         routeManager.setReqList(reqManger.getRequests());
         routeManager.calc();
         routeManager.printRoutes();
+
+
+        tcpServer = new TCPServer(reqManger,routeManager);
+        serverThread = new Thread(tcpServer);
+        serverThread.start();
+
+
+
+
+
 
         menuLoop();
 
@@ -61,6 +64,10 @@ public class Main
                 {
                     case "listReq":
                         reqManger.listReq();
+                        break;
+                    case "calc":
+                        routeManager.calc();
+                        routeManager.printRoutes();
                         break;
                     case "stop":
                         tcpServer.closeServerSocket();

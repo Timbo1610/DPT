@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Route {
     private Vehicle vehicle;
     private ArrayList<Request> requests = new ArrayList<>();
+    private int pickupLocationX;
+    private int pickupLocationY;
 
     public Route()
     {
@@ -28,5 +30,21 @@ public class Route {
 
     public void setRequests(ArrayList<Request> requests) {
         this.requests = requests;
+    }
+
+    public int getPickupLocationX() {
+        return pickupLocationX;
+    }
+
+    public void setPickupLocationX(int pickupLocationX) {
+        this.pickupLocationX = pickupLocationX;
+    }
+
+    public int getPickupLocationY() {
+        return pickupLocationY;
+    }
+
+    public void setPickupLocationY(int pickupLocationY) {
+        this.pickupLocationY = pickupLocationY;
     }
 }
