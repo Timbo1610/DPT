@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 public class Request {
     private LocalDateTime time;
     private String passenger;
-    private String origin;
-    private String destination;
+    private double originX;
+    private double originY;
+    private double destinationX;
+    private double destinationY;
     private int time_range;
 
     public int getID() {
@@ -21,16 +23,14 @@ public class Request {
     }
 
     private int ID;
-    private String transportation_type;
 
-    private boolean active;
 
     public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = LocalDateTime.parse(time);
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public String getPassenger() {
@@ -41,51 +41,43 @@ public class Request {
         this.passenger = passenger;
     }
 
-    public String getOrigin() {
-        return origin;
+    public double getOriginX() {
+        return originX;
     }
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
+    public void setOriginX(double originX) {
+        this.originX = originX;
     }
 
-    public String getDestination() {
-        return destination;
+    public double getOriginY() {
+        return originY;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setOriginY(double originY) {
+        this.originY = originY;
+    }
+
+    public double getDestinationX() {
+        return destinationX;
+    }
+
+    public void setDestinationX(double destinationX) {
+        this.destinationX = destinationX;
+    }
+
+    public double getDestinationY() {
+        return destinationY;
+    }
+
+    public void setDestinationY(double destinationY) {
+        this.destinationY = destinationY;
     }
 
     public int getTime_range() {
         return time_range;
     }
 
-    public void setTime_range(String time_range) {
-        this.time_range = Integer.parseInt(time_range);
-    }
-
-    public String getTransportation_type() {
-        return transportation_type;
-    }
-
-    public void setTransportation_type(String transportation_type) {
-        this.transportation_type = transportation_type;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-        if(active)
-            System.out.print("active ");
-        else
-            System.out.print("deactivated");
-
-        System.out.println(time.toString() + " : " + passenger + " origin:" + origin + " destination: " + destination + " : " + time_range + " : " + transportation_type );
-
-
+    public void setTime_range(int time_range) {
+        this.time_range = time_range;
     }
 }

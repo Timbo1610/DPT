@@ -90,8 +90,11 @@ public class RequestManager {
         {
             System.out.println(
                     req.getPassenger() + " ; " +
-                    req.getOrigin() + " ; " +
-                    req.getDestination()
+                    req.getOriginX() + " ; " +
+                    req.getOriginY() + " ; " +
+                    req.getDestinationX() + " ; " +
+                    req.getDestinationY() + " ; " +
+                    req.getPassenger()
             );
         }
     }

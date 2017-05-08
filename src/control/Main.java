@@ -14,6 +14,7 @@ public class Main
     private static TCPServer tcpServer;
     private static RequestManager reqManger;
     private static Thread serverThread;
+    private static  RouteManager routeManager;
 
     public static void main(String [] args)
     {
@@ -31,6 +32,11 @@ public class Main
         serverThread = new Thread(tcpServer);
         serverThread.start();
 
+        routeManager = new RouteManager();
+
+
+        routeManager.setReqList(requestList);
+        routeManager.calc();
 
         menuLoop();
 
