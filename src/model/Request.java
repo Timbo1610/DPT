@@ -14,7 +14,7 @@ public class Request {
     private double destinationX;
     private double destinationY;
     private int time_range;
-    private int walkingDistance = 100;
+    private int walkingDistance = 250;
 
     private ArrayList<Request> requests = new ArrayList();
     private Route route;

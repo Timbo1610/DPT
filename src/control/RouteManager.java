@@ -36,9 +36,11 @@ public class RouteManager {
                 originDist = calcDist(req.getOriginX(),req.getOriginY(),coReq.getOriginX(),coReq.getOriginY());
                 destinationDist = calcDist(req.getDestinationX(),req.getDestinationY(),coReq.getDestinationX(),coReq.getDestinationY());
 
-                if(originDist <= distance && destinationDist <= distance && req != coReq)
+                int walkingDist = Math.min(req.getWalkingDistance(),coReq.getWalkingDistance());
+
+                if(originDist <= walkingDist && destinationDist <= walkingDist && req != coReq)
                 {
-                    System.out.print(coReq.getPassenger() + " " + originDist + " : " + destinationDist + " | ");
+                    System.out.print(coReq.getPassenger() + " walkingDist:  " + walkingDist + "m Ori:" + originDist + "m Des: " + destinationDist + "m | ");
                     req.getRequests().add(coReq);
                 }
             }
