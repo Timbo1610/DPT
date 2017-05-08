@@ -34,6 +34,7 @@ public class Main
 
         routeManager.setReqList(reqManger.getRequests());
         routeManager.calc();
+        routeManager.printRoutes();
 
         menuLoop();
 

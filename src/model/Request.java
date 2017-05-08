@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * Created by Tim on 17.04.2017.
@@ -13,6 +14,10 @@ public class Request {
     private double destinationX;
     private double destinationY;
     private int time_range;
+    private int walkingDistance = 100;
+
+    private ArrayList<Request> requests = new ArrayList();
+    private Route route;
 
     public int getID() {
         return ID;
@@ -79,5 +84,29 @@ public class Request {
 
     public void setTime_range(int time_range) {
         this.time_range = time_range;
+    }
+
+    public int getWalkingDistance() {
+        return walkingDistance;
+    }
+
+    public void setWalkingDistance(int walkingDistance) {
+        this.walkingDistance = walkingDistance;
+    }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(ArrayList<Request> requests) {
+        this.requests = requests;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }
