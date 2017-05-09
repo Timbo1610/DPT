@@ -155,7 +155,7 @@ public class RouteManager {
         for(Route route: routeList)
         {
             System.out.print("Route"+ routeList.indexOf(route) + " : " + route.getRequests().size() + " passengers.. " );
-            System.out.print("pick-up: " + route.getPickupLocationX() + ":" + route.getPickupLocationY() + " ");
+            //System.out.print("pick-up: " + route.getPickupLocationX() + ":" + route.getPickupLocationY() + " ");
             for(Request req:route.getRequests())
             {
                 System.out.print(req.getPassenger() + " " );
@@ -172,5 +172,18 @@ public class RouteManager {
 
     public void setVehList(ArrayList<Vehicle> vehList) {
         this.vehList = vehList;
+    }
+
+
+    public ArrayList<Request> getReqList() {
+        return reqList;
+    }
+
+    public ArrayList<Vehicle> getVehList() {
+        return vehList;
+    }
+
+    public ArrayList<Route> getRouteList() {
+        return routeList;
     }
 }

@@ -2,6 +2,7 @@ package control;
 
 import com.google.gson.Gson;
 import model.Request;
+import model.Route;
 import model.Vehicle;
 
 import java.io.IOException;
@@ -85,8 +86,19 @@ public class Listener implements Runnable {
                 case "veh":
                     veh = gson.fromJson(readinput.split( "@")[1],Vehicle.class);
                     reqManager.addVehicle(veh);
-
                     break;
+                case "get":
+                    for(Route temproute: routeManager.getRouteList())
+                    {
+                        for(Request tempreq: temproute.getRequests()) {
+                            println("req@" + routeManager.getRouteList().indexOf(temproute) +"@"+tempreq.getPassenger()
+                                    + " @x1@" +tempreq.getOriginX()
+                                    + " @y1@" + tempreq.getOriginY()
+                                    + " @x2@" + tempreq.getDestinationX()
+                                    + " @y2@" + tempreq.getDestinationY());
+                        }
+                    }
+                   break;
             }
 
             println("received!");
